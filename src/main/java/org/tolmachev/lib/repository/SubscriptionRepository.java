@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public interface LibrarySubscriptionEntityRepository extends JpaRepository<LibrarySubscriptionEntity, Long> {
+public interface SubscriptionRepository extends JpaRepository<LibrarySubscriptionEntity, Long> {
     Optional<LibrarySubscriptionEntity> findByUsername(String name);
 
     @Query(value = "SELECT DISTINCT s.* FROM SUBSCRIPTION s "

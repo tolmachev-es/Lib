@@ -6,5 +6,5 @@ import org.tolmachev.lib.entity.BookInSubscriptionEntity;
 import org.tolmachev.lib.entity.BookSubscriptionId;
 
 @Repository
-public interface BookInSubscriptionEntityRepository extends JpaRepository<BookInSubscriptionEntity, BookSubscriptionId> {
+public interface BookInSubscriptionRepository extends JpaRepository<BookInSubscriptionEntity, BookSubscriptionId> {
 }

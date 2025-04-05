@@ -5,5 +5,5 @@ import org.tolmachev.lib.model.UploadRequest;
 
 public interface LibraryService {
     Subscription getSubscription(String userFullName);
-    void saveOldData(UploadRequest uploadRequest);
+    void saveData(UploadRequest uploadRequest);
 }

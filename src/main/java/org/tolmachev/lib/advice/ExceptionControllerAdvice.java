@@ -1,5 +1,6 @@
 package org.tolmachev.lib.advice;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestControllerAdvice
+@Slf4j
 public class ExceptionControllerAdvice {
 
     @ExceptionHandler({
@@ -22,6 +24,7 @@ public class ExceptionControllerAdvice {
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorMessage subscriptionException(SubscriptionNotFoundException ex) {
+        log.error("Произошла ошибка при поиске пользователя: {}", ex.getMessage());
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setError(ex.getMessage());
         return errorMessage;
@@ -33,6 +36,7 @@ public class ExceptionControllerAdvice {
     })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ValidationErrorMessage notValidDtoException(MethodArgumentNotValidException ex) {
+        log.error("Произошла ошибка при валидации запроса");
         Map<String, String> error = new HashMap<>();
         List<FieldError> errors = ex.getFieldErrors();
         for (FieldError fe : errors) {

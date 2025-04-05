@@ -1,14 +1,17 @@
-package org.tolmachev.lib.service;
+package org.tolmachev.lib.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.tolmachev.lib.entity.BookEntity;
 import org.tolmachev.lib.entity.BookInSubscriptionEntity;
 import org.tolmachev.lib.entity.LibrarySubscriptionEntity;
 import org.tolmachev.lib.model.Data;
-import org.tolmachev.lib.repository.BookEntityRepository;
-import org.tolmachev.lib.repository.BookInSubscriptionEntityRepository;
-import org.tolmachev.lib.repository.LibrarySubscriptionEntityRepository;
+import org.tolmachev.lib.repository.BookRepository;
+import org.tolmachev.lib.repository.BookInSubscriptionRepository;
+import org.tolmachev.lib.repository.SubscriptionRepository;
+import org.tolmachev.lib.service.SubscriptionService;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,12 +21,15 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UpdateDatabaseService {
-    private final BookEntityRepository bookRepository;
-    private final LibrarySubscriptionEntityRepository subscriptionRepository;
-    private final BookInSubscriptionEntityRepository bookInSubscriptionRepository;
+@Slf4j
+public class SubscriptionServiceImpl implements SubscriptionService {
+    private final BookRepository bookRepository;
+    private final SubscriptionRepository subscriptionRepository;
+    private final BookInSubscriptionRepository bookInSubscriptionRepository;
 
-    public void updateSubscriptions(List<Data> dataList) {
+    @Transactional
+    public void saveSubscriptions(List<Data> dataList) {
+        log.debug("Началась обработка информации по абонементам");
         Map<String, BookEntity> books = new HashMap<>();
         Map<String, LibrarySubscriptionEntity> subscriptions = new HashMap<>();
         Set<BookInSubscriptionEntity> bookInSubscriptions = new HashSet<>();
@@ -46,10 +52,12 @@ public class UpdateDatabaseService {
             }
             bookInSubscriptions.add(subscription.addBook(book));
         }
+        log.debug("Сущности созданы, начинается сохранение");
 
         bookRepository.saveAll(books.values());
         subscriptionRepository.saveAll(subscriptions.values());
         bookInSubscriptionRepository.saveAll(bookInSubscriptions);
+        log.debug("Сущности сохранены");
     }
 
     private BookEntity getBookEntity(String bookName, String author) {

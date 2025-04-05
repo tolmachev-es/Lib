@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.tolmachev.lib.entity.LibrarySubscriptionEntity;
-import org.tolmachev.lib.repository.LibrarySubscriptionEntityRepository;
+import org.tolmachev.lib.repository.SubscriptionRepository;
 import org.tolmachev.lib.service.SenderService;
 
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ public class SendScheduler {
     @Value("${scheduler.days}")
     private Integer days;
     private final SenderService senderService;
-    private final LibrarySubscriptionEntityRepository subscriptionRepository;
+    private final SubscriptionRepository subscriptionRepository;
 
 
     @Scheduled(cron = "${scheduler.cron}")

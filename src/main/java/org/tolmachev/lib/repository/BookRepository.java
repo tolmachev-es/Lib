@@ -7,7 +7,7 @@ import org.tolmachev.lib.entity.BookEntity;
 import java.util.Optional;
 
 @Repository
-public interface BookEntityRepository extends JpaRepository<BookEntity, Long> {
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
     Optional<BookEntity> findBookEntityByNameAndAuthor(String bookName, String author);
     Optional<BookEntity> findBookEntityByName(String name);
 }

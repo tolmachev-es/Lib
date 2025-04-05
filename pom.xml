@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.tolmachev</groupId>
-    <artifactId>Lib</artifactId>
+    <artifactId>Library</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Lib</name>
     <description>Lib</description>

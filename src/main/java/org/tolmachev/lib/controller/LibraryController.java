@@ -20,18 +20,20 @@ public class LibraryController {
     @Operation(summary = "Загрузить данные по абонементам")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Данные добавлены"),
-            @ApiResponse(responseCode = "400", description = "Имеется ошибка в отправленных пользователем данных")
+            @ApiResponse(responseCode = "400", description = "Имеется ошибка в отправленных пользователем данных"),
+            @ApiResponse(responseCode = "500", description = "При обработке запроса произошла ошибка")
     })
     @PostMapping("/upload")
     @ResponseStatus(HttpStatus.OK)
     void upload(@Valid @RequestBody UploadRequest uploadRequest){
-        libraryService.saveOldData(uploadRequest);
+        libraryService.saveData(uploadRequest);
     }
 
     @Operation(summary = "Поиск абонемента по фамилии")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Абонемент найден"),
-            @ApiResponse(responseCode = "404", description = "Абонемент не найден")
+            @ApiResponse(responseCode = "404", description = "Абонемент не найден"),
+            @ApiResponse(responseCode = "500", description = "При обработке запроса произошла ошибка")
     })
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
