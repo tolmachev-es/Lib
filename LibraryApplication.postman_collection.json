@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "1dc73856-8bbe-4eff-afbf-8660f46dcb13",
+		"name": "LibraryApplication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29052040"
+	},
+	"item": [
+		{
+			"name": "SearchUserRequest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{server}}/library/search?userFullName=Evgeny Tolmachev",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"library",
+						"search"
+					],
+					"query": [
+						{
+							"key": "userFullName",
+							"value": "Evgeny Tolmachev"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UploadSubscription",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"username\": \"scifi_fan\",\r\n            \"userFullName\": \"Alex Johnson\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"Foundation\",\r\n            \"bookAuthor\": \"Isaac Asimov\"\r\n        },\r\n        {\r\n            \"username\": \"wcobq\",\r\n            \"userFullName\": \"Evgeny Tolmachev\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"Foundation\",\r\n            \"bookAuthor\": \"Isaac Asimov\"\r\n        },\r\n        {\r\n            \"username\": \"bookworm\",\r\n            \"userFullName\": \"Sarah Connor\",\r\n            \"userActive\": false,\r\n            \"bookName\": \"Dune\",\r\n            \"bookAuthor\": \"Frank Herbert\"\r\n        },\r\n        {\r\n            \"username\": \"literature_lover\",\r\n            \"userFullName\": \"Michael Brown\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"1984\",\r\n            \"bookAuthor\": \"George Orwell\"\r\n        },\r\n        {\r\n            \"username\": \"fantasy_reader\",\r\n            \"userFullName\": \"Emily Wilson\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"The Hobbit\",\r\n            \"bookAuthor\": \"J.R.R. Tolkien\"\r\n        },\r\n        {\r\n            \"username\": \"sci_fi_enthusiast\",\r\n            \"userFullName\": \"David Smith\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"Neuromancer\",\r\n            \"bookAuthor\": \"William Gibson\"\r\n        },\r\n        {\r\n            \"username\": \"classic_books\",\r\n            \"userFullName\": \"Jessica Adams\",\r\n            \"userActive\": false,\r\n            \"bookName\": \"Pride and Prejudice\",\r\n            \"bookAuthor\": \"Jane Austen\"\r\n        },\r\n        {\r\n            \"username\": \"mystery_fan\",\r\n            \"userFullName\": \"Robert Johnson\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"The Da Vinci Code\",\r\n            \"bookAuthor\": \"Dan Brown\"\r\n        },\r\n        {\r\n            \"username\": \"horror_lover\",\r\n            \"userFullName\": \"Lisa Williams\",\r\n            \"userActive\": true,\r\n            \"bookName\": \"The Shining\",\r\n            \"bookAuthor\": \"Stephen King\"\r\n        },\r\n        {\r\n            \"username\": \"history_buff\",\r\n            \"userFullName\": \"Thomas Anderson\",\r\n            \"userActive\": false,\r\n            \"bookName\": \"Sapiens\",\r\n            \"bookAuthor\": \"Yuval Noah Harari\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{server}}/library/upload",
+					"protocol": "http",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"library",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
