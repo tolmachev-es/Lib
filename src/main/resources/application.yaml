@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Library
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:6541/library
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+scheduler:
+  days: 20
+  cron: "0 0 */6 * * *"
+
+  kafka:
+    bootstrap-servers: localhost:9092
