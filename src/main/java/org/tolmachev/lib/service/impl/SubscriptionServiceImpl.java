@@ -54,9 +54,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         }
         log.debug("Сущности созданы, начинается сохранение");
 
-        bookRepository.saveAll(books.values());
-        subscriptionRepository.saveAll(subscriptions.values());
-        bookInSubscriptionRepository.saveAll(bookInSubscriptions);
+        bookRepository.saveAllAndFlush(books.values());
+        subscriptionRepository.saveAllAndFlush(subscriptions.values());
+        bookInSubscriptionRepository.saveAllAndFlush(bookInSubscriptions);
         log.debug("Сущности сохранены");
     }
 

@@ -26,8 +26,8 @@ public class SendScheduler {
     public void runSenderService() {
         LocalDate now = LocalDate.now().minusDays(days);
         log.info("Началась отправка сообщений пользователям");
-        Set<LibrarySubscriptionEntity> subscription = subscriptionRepository.findSubscription(now);
+        Set<LibrarySubscriptionEntity> subscriptions = subscriptionRepository.findSubscription(now);
+        senderService.send(subscriptions);
         log.info("Отправка закончена");
-        senderService.send(subscription);
     }
 }

@@ -34,10 +34,8 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void saveData(UploadRequest uploadRequest) {
-        log.debug("Началась отправка данных по абонементам пользователей");
-        for (Data data : uploadRequest.getData()) {
-            String uuid = UUID.randomUUID().toString();
-            kafkaTemplate.send(topicName, uuid, data);
-        }
+        log.info("Началась отправка данных по абонементам пользователей");
+        uploadRequest.getData().forEach(data ->  kafkaTemplate.send(topicName, UUID.randomUUID().toString(), data));
+        log.info("Запись данных завершена, записана информация по {} абонементам", uploadRequest.getData().size());
     }
 }
