@@ -16,7 +16,7 @@ public class DataListener {
 
     private final SubscriptionService subscriptionService;
 
-    @KafkaListener(topics = {"test-topic"}, groupId = "product", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = {"${kafka.topic-name}"}, groupId = "product", containerFactory = "kafkaListenerContainerFactory")
     public void listen(List<Data> records) {
         log.debug("Получены данные по абонементам");
         subscriptionService.saveSubscriptions(records);
