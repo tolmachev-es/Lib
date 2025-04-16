@@ -19,9 +19,11 @@ public class DataListener {
 
     @KafkaListener(topics = {"${kafka.topic-name}"}, groupId = "product", containerFactory = "kafkaListenerContainerFactory")
     public void listen(List<Data> records, Acknowledgment ack) {
+        log.info("получено {}", records.size());
         log.debug("Получены данные по абонементам");
         subscriptionService.saveSubscriptions(records);
         ack.acknowledge();
         log.debug("Данные по абонементам обработаны");
+        log.info("Данные обработаны");
     }
 }
